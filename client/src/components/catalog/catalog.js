@@ -19,7 +19,7 @@ const Catalog = (props) => {
                         {elem.idYoutube ? (
                             <p className={styles.trailer} onClick={() => popUp(`https://www.youtube.com/watch?v=${elem.idYoutube}`)}>Trailer</p>
                         ):(
-                            <p>No Trailer</p>
+                            <p className={styles.trailer} onClick={() => alert("sorry no trailer")}>No Trailer</p>
                         )}
                     </div>                  
                 )  

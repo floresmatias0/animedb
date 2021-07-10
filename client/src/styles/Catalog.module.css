@@ -15,3 +15,6 @@
     cursor:grabbing;
     text-align: center;
 }
+.trailer:hover{
+    color: chocolate;
+}

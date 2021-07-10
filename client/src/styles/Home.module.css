@@ -21,3 +21,9 @@
     list-style: none;
     text-align: center;
 }
+.listGenres li{
+    cursor: pointer;
+}
+.listGenres li:hover{
+    color:chocolate;
+}
