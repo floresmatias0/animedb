@@ -9,14 +9,16 @@ const Card = (props) => {
         {props.anime.map((elem,i)=>{
                 return (
                     <div className={styles.card} key={i}> 
-                        <p>{elem.name}({elem.origin})</p>
-                        <p>{elem.description}</p>
-                        <img src={elem.image.large} alt='poster'/>
                         {elem.coverImage === null ? (
                             <p>no cover</p>
                         ) : (
-                            <img src={elem.coverImage["tiny"]} alt='back'/>
+                            <div className={styles.image}>
+                                <img src={elem.coverImage["tiny"]} alt='back'/>
+                            </div>
                         )}
+                        <h2>{elem.name}({elem.origin})</h2>
+                        <img src={elem.image.small} alt='poster'/>
+                        <p className={styles.description}>{elem.description}</p>
                         <p>{elem.status}</p>
                     </div>                  
                 )  

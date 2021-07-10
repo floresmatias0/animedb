@@ -3,6 +3,7 @@ import { getAnimeDetails } from '../redux/animesDuck/animesDuck';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import Card from '../components/card/Card';
+import styles from '../styles/Search.module.css'
 
 const Details = ({DETAILS,detailAnime}) => {
     const { animeId } = useParams();
@@ -13,29 +14,15 @@ const Details = ({DETAILS,detailAnime}) => {
     },[animeId])
 
     return (
-        <>
+        <div className={styles.container}>
             <h1>Hola soy un Detail</h1>
             {DETAILS && DETAILS.details.length > 0 ? (
-                <div>
-                    {/* {RESULTS.search.map((anime,i) => {
-                        return (
-                            <div key={i}>
-                                <p>{anime.name}</p>
-                                <p>{anime.description}</p>
-                                <img src={anime.image.small} alt="Poster"/>
-                            </div>
-                        )
-                    })} */}
-                <Card
-                    anime={DETAILS.details}
-                    error={DETAILS.errorDetails}
-                />
-                </div>
+                <Card anime={DETAILS.details} />
             ):(
                 <p>loading...</p>
             )}
 
-        </>
+        </div>
     )
 }
 

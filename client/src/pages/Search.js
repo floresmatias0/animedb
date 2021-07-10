@@ -3,6 +3,7 @@ import { getAnimeByName } from '../redux/animesDuck/animesDuck';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import Card from '../components/card/Card';
+import styles from '../styles/Search.module.css'
 
 const Search = ({RESULTS,resultAnime}) => {
 
@@ -14,27 +15,14 @@ const Search = ({RESULTS,resultAnime}) => {
     },[animeName])
 
     return (
-        <>
+        <div className={styles.container}>
             <h1>Hola soy un Resultado</h1>
             {RESULTS && RESULTS.search.length > 0 ? (
-                <div>
-                    {/* {RESULTS.search.map((anime,i) => {
-                        return (
-                            <div key={i}>
-                                <p>{anime.name}</p>
-                                <p>{anime.description}</p>
-                                <img src={anime.image.small} alt="Poster"/>
-                            </div>
-                        )
-                    })} */}
-                    <Card
-                        anime={RESULTS.search}
-                    />
-                </div>
+                <Card anime={RESULTS.search}/>
             ):(
                 <p>loading...</p>
             )}
-        </>
+        </div>
     )
 }
 

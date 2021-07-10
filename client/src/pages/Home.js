@@ -9,7 +9,7 @@ const Home = ({ANIME,NEWANIMES}) => {
 
     //PAGINATION
     const [currentPage, setCurrentPage] = useState(1)
-    const [postPerPage] = useState(20)
+    const [postPerPage] = useState(32)
 
     const indexOfLastPage = currentPage * postPerPage;
     const indexOfFirstPage = indexOfLastPage - postPerPage;

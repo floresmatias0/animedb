@@ -16,13 +16,13 @@ const generateStore = () =>{
       composeEnhancers(applyMiddleware(thunk))
   )
 
-//   const createAnime = setInterval(()=>{
-//   getAnimes(num)(store.dispatch,store.getState);
-//   num+=20
-//   if(num > 2550 && num <= 2580){
-//     clearInterval(createAnime)
-//   }
-//  },500)
+  // const createAnime = setInterval(()=>{
+  //   getAnimes(num)(store.dispatch,store.getState);
+  //   num+=20
+  //   if(num > 550 && num <= 580){
+  //     clearInterval(createAnime)
+  //   }
+  // },500)
   getAnimes(num)(store.dispatch,store.getState);
   getGenres()(store.dispatch,store.getState)
   return store

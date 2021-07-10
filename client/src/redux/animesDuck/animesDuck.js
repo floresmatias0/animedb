@@ -116,17 +116,17 @@ export const getAnimes = (num) => {
         type:GET_ANIMES_REQUEST
       })
 
-      let options = {
-        method: 'POST',
-        url: 'http://localhost:3001/animes/create',
-        header:{
-            ContentType: 'application/json',   
-        },
-        data:{
-            offset: num
-            }
-    }
-      await axios.request(options)
+      // let options = {
+      //   method: 'POST',
+      //   url: 'http://localhost:3001/animes/create',
+      //   header:{
+      //       ContentType: 'application/json',   
+      //   },
+      //   data:{
+      //       offset: num
+      //       }
+      // }
+      await axios.get('http://localhost:3001/animes')
       .then(res => {
         dispatch({
           type: GET_ANIMES_SUCCESS,
