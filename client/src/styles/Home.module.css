@@ -1,0 +1,23 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;  
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+.contentCards{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.contentGenres{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+.listGenres{
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}

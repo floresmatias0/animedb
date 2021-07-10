@@ -1,0 +1,62 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+}
+.title, .searchbar, .user{
+    width: 33.3%;
+}
+.title h1{
+    cursor: pointer;
+}
+.searchbar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+}
+.button{
+    cursor: pointer;
+}
+.user h2{
+    display: flex;
+    float: right;
+}
+@media screen and (max-width:600px){
+    .container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center;
+    }
+    .title, .searchbar, .user{
+        width: 100%;
+        text-align: center;
+    }
+    .user h2{
+        display: block;
+        float: none;
+    }
+    .searchbar div{
+        display: flex;
+        width: 60%;
+        margin: 0.2em;
+        justify-content: center;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .button{
+        width: 100px !important;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}

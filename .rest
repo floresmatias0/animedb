@@ -1,0 +1,63 @@
+### GET LIST
+GET http://localhost:3001/animes
+
+
+### GET DETAIL MOVIE PARAMS
+
+GET http://localhost:3001/animes/search/100
+
+### POST MOVIE IN DB
+
+POST http://localhost:3001/animes/create
+Content-Type: application/json
+
+{
+    "offset": 20
+}
+
+### POST USER IN DB
+
+POST http://localhost:3001/users/new
+Content-Type: application/json
+
+{
+    "email": "email@gmail.com",
+    "name": "matias",
+    "lastname": "flores",
+    "password": "password",
+    "password_virtual": "password"
+}
+
+### POST MOVIE IN DB
+
+POST http://localhost:3001/movies/create/form/movie
+Content-Type: application/json
+
+{
+    "name": "the movie",
+    "origin": "italy",
+    "premiere": " donde sea ",
+    "director": "akira toriyama",
+    "image": "url de imagen",
+    "actors": "goku y vegeta"
+}
+
+###
+
+GET http://localhost:3001/movies/apiToDb
+
+###
+
+GET http://localhost:3001/animes/details/1
+
+
+### POST MOVIE IN DB
+
+POST http://localhost:3001/animes/filterbygenre
+Content-Type: application/json
+
+{
+    "genres": "Action"
+}
+
+###
