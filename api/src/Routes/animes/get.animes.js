@@ -34,7 +34,7 @@ server.get('/genres', async(req, res, next) => {
     await Anime.findAll()
     .then(result => {
         for(let i = 0; i < result.length; i++){
-            result[i].genres.map(async(point) => {
+            result[i].genres.forEach(async(point) => {
                 await Genre.findOrCreate({
                     where:{
                         name: point

@@ -21,10 +21,11 @@ module.exports = {
                         image: arr[i].attributes.posterImage,
                         coverImage: arr[i].attributes.coverImage,
                         totalEpisodes: arr[i].attributes.totalLength,
+                        popularity: arr[i].attributes.popularityRank,
                         idYoutube: arr[i].attributes.youtubeVideoId,
                         genres: await axios.get(arr[i].relationships.genres.links.related).then(genre =>{
                             let arr = []
-                            genre.data.data.map(point => {                              
+                            genre.data.data.forEach(point => {                              
                                 arr.push(point.attributes.name)
                             })
                             return arr

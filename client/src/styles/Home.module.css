@@ -1,18 +1,21 @@
 .container{
     width: 100%;
     display: flex;
-    flex-direction: row;  
-    flex-wrap: wrap;
+    flex-direction: column;  
     justify-content: center;
-    align-content: center;
+    align-items: center;
 }
 .contentCards{
-    width: 80%;
+    width: 99%;
+    height: 50%;
     display: flex;
-    flex-direction: column;
+    flex-direction:row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
 .contentGenres{
-    width: 20%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -20,10 +23,57 @@
     padding: 0;
     list-style: none;
     text-align: center;
+    margin: 2em;
 }
 .listGenres li{
     cursor: pointer;
+    margin: 0.5em;
 }
 .listGenres li:hover{
     color:chocolate;
+}
+.card{
+    margin: 0.5em;
+    cursor: pointer;
+    text-align: center;
+}
+.card img{
+    border-radius: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+.trailer{
+    cursor:grabbing;
+    text-align: center;
+}
+.trailer:hover{
+    color: chocolate;
+}
+.contentImage{
+    width: 282px;
+    position: relative;
+}
+.name{
+    display: none;
+
+}
+.contentImage:hover .name{
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: antiquewhite;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.contentImage img:hover{
+    filter:brightness(0.5);
+}
+.listColumns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+
 }

@@ -5,6 +5,9 @@ let initialState = {
     animes: [],
     loadingAnimes: true,
     errorAnimes: "",
+    animesByGenre: [],
+    loadingAnimesByGenre: true,
+    errorAnimesByGenre: "",
     genres: [],
     loadingGenres: true,
     errorGenres: "",
@@ -19,6 +22,10 @@ let initialState = {
 let GET_ANIMES_REQUEST = "GET_ANIMES_REQUEST";
 let GET_ANIMES_SUCCESS = "GET_ANIMES_SUCCESS";
 let GET_ANIMES_FAILURE = "GET_ANIMES_FAILURE";
+
+let GET_ANIMESBYGENRE_REQUEST = "GET_ANIMESBYGENRE_REQUEST";
+let GET_ANIMESBYGENRE_SUCCESS = "GET_ANIMESBYGENRE_SUCCESS";
+let GET_ANIMESBYGENRE_FAILURE = "GET_ANIMESBYGENRE_FAILURE";
 
 let GET_GENRES_REQUEST = "GET_GENRES_REQUEST";
 let GET_GENRES_SUCCESS = "GET_GENRES_SUCCESS";
@@ -103,6 +110,23 @@ const reducer = (state = initialState, action) => {
           errorDetails: action.payload,
           loadingDetails:true
         }
+      case GET_ANIMESBYGENRE_REQUEST:
+        return {
+          ...state,
+          loadingAnimesByGenre:false
+        }
+      case GET_ANIMESBYGENRE_SUCCESS:
+        return {
+          ...state,
+          animesByGenre: action.payload,
+          loadingAnimesByGenre: true
+        }
+      case GET_ANIMESBYGENRE_FAILURE:
+        return {
+          ...state,
+          errorAnimesByGenre: action.payload,
+          loadingAnimesByGenre:true
+        }
    
     default:
       return state;
@@ -116,17 +140,17 @@ export const getAnimes = (num) => {
         type:GET_ANIMES_REQUEST
       })
 
-      // let options = {
-      //   method: 'POST',
-      //   url: 'http://localhost:3001/animes/create',
-      //   header:{
-      //       ContentType: 'application/json',   
-      //   },
-      //   data:{
-      //       offset: num
-      //       }
-      // }
-      await axios.get('http://localhost:3001/animes')
+      let options = {
+        method: 'POST',
+        url: 'http://localhost:3001/animes/create',
+        header:{
+            ContentType: 'application/json',   
+        },
+        data:{
+            offset: num
+            }
+      }
+      await axios.request(options)
       .then(res => {
         dispatch({
           type: GET_ANIMES_SUCCESS,
@@ -141,6 +165,28 @@ export const getAnimes = (num) => {
         })
       })
     }
+
+}
+export const getAnimesDB = (num) => {
+  return async (dispatch,getState) => {
+    dispatch({
+      type:GET_ANIMES_REQUEST
+    })
+    await axios.get('http://localhost:3001/animes')
+    .then(res => {
+      dispatch({
+        type: GET_ANIMES_SUCCESS,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: GET_ANIMES_FAILURE,
+        payload: err.message
+      })
+    })
+  }
 
 }
 
@@ -195,7 +241,7 @@ export const getAnimeByName = (name) => {
 export const getAnimesByGenre = (nameGenre) => {
   return async (dispatch,getState) => {
     dispatch({
-      type:GET_ANIMES_REQUEST
+      type:GET_ANIMESBYGENRE_REQUEST
     })
     await axios.get('http://localhost:3001/animes')
     .then(res => {
@@ -208,14 +254,14 @@ export const getAnimesByGenre = (nameGenre) => {
           })
         }
       dispatch({
-        type: GET_ANIMES_SUCCESS,
+        type: GET_ANIMESBYGENRE_SUCCESS,
         payload: newAnimes
       })
     })
     .catch(err => {
       console.log(err)
       dispatch({
-        type: GET_ANIMES_FAILURE,
+        type: GET_ANIMESBYGENRE_FAILURE,
         payload: err.message
       })
     })

@@ -43,6 +43,10 @@ module.exports = (sequelize) => {
         genres: {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true,  
-        }
+        },
+        popularity: {
+            type: DataTypes.INTEGER,
+            allowNull: true,  
+        } 
     });
 };

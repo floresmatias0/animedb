@@ -1,6 +1,6 @@
 import { createStore,combineReducers,compose,applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import animesReducer, { getAnimes,getGenres } from './animesDuck/animesDuck';
+import animesReducer, { getAnimes,getGenres,getAnimesDB } from './animesDuck/animesDuck';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -19,11 +19,11 @@ const generateStore = () =>{
   // const createAnime = setInterval(()=>{
   //   getAnimes(num)(store.dispatch,store.getState);
   //   num+=20
-  //   if(num > 550 && num <= 580){
+  //   if(num > 16000 && num <= 16020){
   //     clearInterval(createAnime)
   //   }
   // },500)
-  getAnimes(num)(store.dispatch,store.getState);
+  getAnimesDB(num)(store.dispatch,store.getState);
   getGenres()(store.dispatch,store.getState)
   return store
 }   

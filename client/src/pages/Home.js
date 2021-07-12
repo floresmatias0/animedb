@@ -1,33 +1,57 @@
 import React,{useState} from 'react';
+import { useHistory } from 'react-router';
 import {connect} from 'react-redux';
 import styles from '../styles/Home.module.css';
-import Paginate from '../components/paginate/paginate';
-import Catalog from '../components/catalog/catalog';
-import { getAnimesByGenre } from '../redux/animesDuck/animesDuck'
 
-const Home = ({ANIME,NEWANIMES}) => {
+const Home = ({ANIME}) => {
+    const history = useHistory();
 
-    //PAGINATION
-    const [currentPage, setCurrentPage] = useState(1)
-    const [postPerPage] = useState(32)
+    var newAnimes 
 
-    const indexOfLastPage = currentPage * postPerPage;
-    const indexOfFirstPage = indexOfLastPage - postPerPage;
-    const currentPost = ANIME.animes.slice(indexOfFirstPage,indexOfLastPage)
-
-    const pagination = (number) => setCurrentPage(number)
+    const popUp = (URL) => {
+        window.open(URL, 'Nombre de la ventana', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=640,height=400,left = 50,top = 50');
+    }
 
     return (
         <div className={styles.container}>
             {ANIME && ANIME.loadingAnimes ? (
-                <div className={styles.contentCards}>
-                    <Paginate 
-                        anime={ANIME.animes.length} 
-                        postPerPage={postPerPage} 
-                        pagination={pagination}/>
-
-                    <Catalog anime={currentPost}/>
+                <>
+                <h1>Los mas populares</h1>
+                <div className={styles.contentCards}>                  
+                    {newAnimes = ANIME.animes.sort(function (a, b) {
+                        if (a.popularity > b.popularity) {
+                            return 1;
+                        }
+                        if (a.popularity < b.popularity) {
+                            return -1;
+                        }
+                        // a must be equal to b
+                        return 0;
+                        }),
+                        newAnimes.map((point,i) => {
+                        if(point.image && point.image.small){
+                            return (
+                                <div className={styles.card} key={i}>
+                                    <p>{point.popularity}</p>
+                                    <div className={styles.contentImage}>
+                                        <img 
+                                            src={`${point.image.small}`} 
+                                            alt="poster" onClick={() => 
+                                            history.push(`/details/${point.id}`)}
+                                        />
+                                        <p className={styles.name}>{point.name}</p>
+                                    </div>
+                                    {point.idYoutube ? (
+                                        <p className={styles.trailer} onClick={() => popUp(`https://www.youtube.com/watch?v=${point.idYoutube}`)}>Trailer</p>
+                                    ):(
+                                        <p className={styles.trailer} onClick={() => alert("sorry no trailer")}>No Trailer</p>
+                                    )}
+                                </div>
+                            )
+                        }
+                    }).slice(0,32)}
                 </div>
+                </>
             ) : (
                 <p>loading...</p>
             )}
@@ -35,11 +59,38 @@ const Home = ({ANIME,NEWANIMES}) => {
             {ANIME && ANIME.loadingGenres ? (
                 <div className={styles.contentGenres}>
                     {ANIME && ANIME.genres.length > 0 ? (
+                        <div className={styles.listColumns}>
                         <ul className={styles.listGenres}>
                             {ANIME.genres.map((point,i) => {
-                                return <li key={i} onClick={() => NEWANIMES(point.name)}>{point.name}</li>
-                            })}
+                                return <li key={i} onClick={() => history.push(`/animes/${point.name}`)}>{point.name}</li>
+                            }).slice(0,10)}
                         </ul>
+                        <ul className={styles.listGenres}>
+                            {ANIME.genres.map((point,i) => {
+                                return <li key={i} onClick={() => history.push(`/animes/${point.name}`)}>{point.name}</li>
+                            }).slice(10,20)}
+                        </ul>
+                        <ul className={styles.listGenres}>
+                            {ANIME.genres.map((point,i) => {
+                                return <li key={i} onClick={() => history.push(`/animes/${point.name}`)}>{point.name}</li>
+                            }).slice(20,30)}
+                        </ul>
+                        <ul className={styles.listGenres}>
+                            {ANIME.genres.map((point,i) => {
+                                return <li key={i} onClick={() => history.push(`/animes/${point.name}`)}>{point.name}</li>
+                            }).slice(30,40)}
+                        </ul>
+                        <ul className={styles.listGenres}>
+                            {ANIME.genres.map((point,i) => {
+                                return <li key={i} onClick={() => history.push(`/animes/${point.name}`)}>{point.name}</li>
+                            }).slice(40,50)}
+                        </ul>
+                        <ul className={styles.listGenres}>
+                            {ANIME.genres.map((point,i) => {
+                                return <li key={i} onClick={() => history.push(`/animes/${point.name}`)}>{point.name}</li>
+                            }).slice(50,60)}
+                        </ul>
+                        </div>
                     ):(
                         <p></p>
                     ) }
@@ -57,10 +108,4 @@ const mapStateToProps = (state) => {
     }
 } 
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        NEWANIMES: (nameGenre) => dispatch(getAnimesByGenre(nameGenre))
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);
