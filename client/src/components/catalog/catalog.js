@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from '../../styles/Catalog.module.css';
-import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Catalog = (props) => {
-
-    const history = useHistory();
 
     const popUp = (URL) => {
         window.open(URL, 'Nombre de la ventana', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=640,height=400,left = 50,top = 50');
@@ -15,7 +13,9 @@ const Catalog = (props) => {
         {props.anime.map((elem,i)=>{
                 return (
                     <div className={styles.card} key={i}> 
-                        <img src={elem.image.tiny} alt='poster' onClick={() => history.push(`/details/${elem.id}`)}/>
+                        <Link to={`/details/${elem.id}`}>
+                            <img src={elem.image.tiny} alt='poster'/>
+                        </Link>
                         {elem.idYoutube ? (
                             <p className={styles.trailer} onClick={() => popUp(`https://www.youtube.com/watch?v=${elem.idYoutube}`)}>Trailer</p>
                         ):(

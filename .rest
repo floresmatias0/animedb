@@ -12,7 +12,7 @@ POST http://localhost:3001/animes/create
 Content-Type: application/json
 
 {
-    "offset": 20
+    "offset": 15806
 }
 
 ### POST USER IN DB
@@ -48,7 +48,7 @@ GET http://localhost:3001/movies/apiToDb
 
 ###
 
-GET http://localhost:3001/animes/details/1
+GET http://localhost:3001/animes/popularity
 
 
 ### POST MOVIE IN DB

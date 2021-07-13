@@ -23,10 +23,9 @@ const ByGenre = ({NEWANIMES,GENRE}) => {
 
     const pagination = (number) => setCurrentPage(number)
 
-
     return (
         <div>
-            <h1>{nameGenre}</h1>
+            <h1 style={{textAlign:"center"}}>{nameGenre}</h1>
             {GENRE && GENRE.loadingAnimesByGenre ? (
                 <>
                     <Paginate 
