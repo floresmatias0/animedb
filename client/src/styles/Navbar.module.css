@@ -1,3 +1,11 @@
+@font-face {
+    font-family: Anime;
+    src: url('../assets/fonts/agent_orange/AGENTORANGE.TTF');
+}
+@font-face {
+    font-family: TextAnime;
+    src: url('../assets/fonts/orange_juice_2/Orange\ Juice.ttf');
+}
 .container{
     width: 100%;
     display: flex;
@@ -9,8 +17,19 @@
 .title, .searchbar, .user{
     width: 33.3%;
 }
+.title, .user{
+    display: flex;
+    align-self: center;
+}
 .title h1{
     cursor: pointer;
+    font-family: Anime;
+    margin: 0;
+    margin-left: 0.2em;
+}
+.title h1:hover{
+    position: relative;
+    bottom: 0.1em;
 }
 .searchbar{
     display: flex;
@@ -19,13 +38,52 @@
     align-self: center;
     text-align: center;
 }
+.searchbar label{
+    font-family: titleAnime;
+}
+.searchbar div{
+    display: flex;
+    width: 80%;
+    margin: 0.2em;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+.barSearch{
+    border: none;
+    border-radius: 0.4em;
+    outline: none;
+    text-align: center;
+    font-family: TextAnime;
+    font-size: 2rem;
+    box-shadow: 1px 1px 3px black inset;
+    margin-top: 0;
+}
 .button{
     cursor: pointer;
+    font-family: TextAnime;
+    font-size: 1.8rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4em;
+    width: 50%;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    margin-left: auto;
+    margin-right: auto;
 }
-.user h2{
-    display: flex;
-    float: right;
+.button:hover{
+    filter: brightness(0.8);
+    color: rgb(32, 55, 184);
 }
+.user {
+    justify-content:flex-end;
+}
+.user img{
+    padding-right: 0.2em;
+}
+
 @media screen and (max-width:600px){
     .container{
         width: 100%;
@@ -44,7 +102,7 @@
     }
     .searchbar div{
         display: flex;
-        width: 60%;
+        width: 80%;
         margin: 0.2em;
         justify-content: center;
         flex-direction: column;

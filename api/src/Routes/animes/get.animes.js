@@ -30,12 +30,13 @@ server.get('/search/:animeName', (req, res, next) => {
     })
 });
 
-server.get('/genres', async(req, res, next) => { 
+server.get('/creategenres', async(req, res, next) => { 
 
     await Anime.findAll()
     .then(result => {
         for(let i = 0; i < result.length; i++){
-            result[i].genres.forEach(async(point) => {
+            
+            result[i].genres.map(async(point) => {
                 await Genre.findOrCreate({
                     where:{
                         name: point
@@ -43,15 +44,11 @@ server.get('/genres', async(req, res, next) => {
                 })
             })
         }  
+
+        res.status(201).send("se crearon generos")
     }) 
     .catch(error => {
-        console.log(error)
-        res.status(400).send(error)
-    })
-    await Genre.findAll()
-    .then(genres => res.status(202).json(genres))
-    .catch(error => {
-        console.log(error)
+        console.log(error.message)
         res.status(400).send(error)
     })
 });

@@ -4,7 +4,7 @@ const axios = require('axios')
 module.exports = {
     apiToDb: async (offset) => {
         console.log(offset)
-        setInterval(async()=>{
+        let createAnime = setInterval(async()=>{
 
             await axios.get(`
             https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=${offset}
@@ -40,7 +40,7 @@ module.exports = {
             })
 
             offset+=20
-            if(offset > 30700 && offset <= 30712){
+            if(offset > 16710 && offset <= 16732){
             clearInterval(createAnime)
             }
         },500)

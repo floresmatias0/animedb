@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import styles from '../../styles/Navbar.module.css';
+import user from '../../assets/images/user.png';
 
 const Navbar = () => {
 
@@ -23,7 +24,7 @@ const Navbar = () => {
         <div className={styles.container}>
 
             <div className={styles.title}>
-                <h1 onClick={() => history.push("/")}>youAnime</h1>
+                <h1 onClick={() => history.push("/")}>youAnime {/*<img src={revenge} alt="titleIcon" width="30px"/>*/}</h1>
             </div>
             
             <form onSubmit={handleSubmit} className={styles.searchbar}>
@@ -31,13 +32,13 @@ const Navbar = () => {
                     <label>search by name</label>
                 </div>
                 <div>
-                    <input type='text' onChange={handleChange} name='name' value={search.name}/>
+                    <input className={styles.barSearch} type='text' onChange={handleChange} name='name' value={search.name}/>
                     <input className={styles.button} type='submit' value="send"/>
                 </div>
             </form>
 
             <div className={styles.user}>
-                <h2>ingresar</h2>
+                <img src={user} alt="userIcon"/>
             </div>
 
         </div>

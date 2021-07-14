@@ -1,9 +1,26 @@
+@font-face {
+    font-family: titleAnime;
+    src: url('../assets/fonts/bumper_sticker/Bumper\ Sticker\ DEMO.otf');
+}
+@font-face {
+    font-family: textAnime2;
+    src: url('../assets/fonts/orange_juice_2/Orange\ Juice.ttf');
+}
 .container{
     width: 100%;
     display: flex;
     flex-direction: column;  
     justify-content: center;
     align-items: center;
+}
+.titleAnime{
+    font-family: titleAnime;
+}
+.contentAll{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 .contentCards{
     width: 99%;
@@ -26,8 +43,16 @@
     margin: 2em;
 }
 .listGenres li{
+    width: 100%;
+    border: 2px solid black;
     cursor: pointer;
     margin: 0.5em;
+    border-radius: 0.5em;
+    font-family: textAnime2;
+    font-size: 1.6rem;
+}
+.link{
+    text-decoration: none !important;
 }
 .listGenres li:hover{
     color:chocolate;
@@ -61,14 +86,18 @@
     display: block;
     width: 100%;
     text-align: center;
-    color: antiquewhite;
+    color: black;
     font-weight: bold;
+    font-family: textAnime2;
+    font-size: 1.6rem;
+    text-shadow: 2px 2px 4px white;
     position: absolute;
     top: 0;
     left: 0;
+    margin-top: 25%;
 }
 .contentImage img:hover{
-    filter:brightness(0.5);
+    filter:brightness(0.4);
 }
 .listColumns{
     display: flex;
