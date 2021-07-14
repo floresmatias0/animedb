@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import styles from '../styles/Home.module.css';
 
 const Home = ({ANIME}) => {
 
     const popUp = (URL) => {
-        window.open(URL, 'Nombre de la ventana', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=640,height=400,left = 50,top = 50');
+        window.open(URL, 'Trailer', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=640,height=400,left = 50,top = 50');
     }
 
     return (
@@ -28,7 +28,12 @@ const Home = ({ANIME}) => {
                                                 src={`${point.image.small}`} 
                                                 alt="poster" 
                                             />
-                                            <p className={styles.name}>{point.name}</p>
+                                            {point.name.length > 16 ? (
+                                                <p className={styles.name}>{point.name.slice(0,17) + "..."}</p>
+                                            ):(
+                                                <p className={styles.name}>{point.name}</p>
+                                            )}
+                                           
                                         </div>
                                     </Link>
                                     {point.idYoutube ? (

@@ -76,27 +76,32 @@
 }
 .contentImage{
     width: 282px;
+    display: block;
+    justify-items: center;
     position: relative;
+    box-sizing: border-box;
 }
 .name{
     display: none;
 
 }
 .contentImage:hover .name{
-    display: block;
+    display: flex;
+    justify-content: center;
     width: 100%;
     text-align: center;
-    color: black;
+    color: rgb(2, 8, 41);
     font-weight: bold;
-    font-family: textAnime2;
-    font-size: 1.6rem;
-    text-shadow: 2px 2px 4px white;
+    font-family: titleAnime;
+    font-size: 1.4rem;
+    text-shadow: 0px 0px 5px white;
     position: absolute;
     top: 0;
     left: 0;
-    margin-top: 25%;
+    right: 0;
+    bottom: 0;
 }
-.contentImage img:hover{
+.contentImage:hover img{
     filter:brightness(0.4);
 }
 .listColumns{
