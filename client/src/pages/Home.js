@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styles from '../styles/Home.module.css';
+import movie from '../assets/images/clapperboard.png'
 
 const Home = ({ANIME}) => {
 
@@ -37,7 +38,11 @@ const Home = ({ANIME}) => {
                                         </div>
                                     </Link>
                                     {point.idYoutube ? (
-                                        <p className={styles.trailer} onClick={() => popUp(`https://www.youtube.com/watch?v=${point.idYoutube}`)}>Trailer</p>
+                                        <p className={styles.trailer} 
+                                           onClick={() => popUp(`https://www.youtube.com/watch?v=${point.idYoutube}`)}>
+                                            Trailer
+                                        <img src={movie} alt="movieIcon"/>
+                                        </p>
                                     ):(
                                         <p className={styles.trailer} onClick={() => alert("sorry no trailer")}>No Trailer</p>
                                     )}

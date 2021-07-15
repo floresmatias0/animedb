@@ -69,7 +69,16 @@
 }
 .trailer{
     cursor:grabbing;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    font-family: textAnime2;
+    font-size: 1.5rem;
+}
+.trailer img{
+    margin: 0;
+    margin-left: 0.5em;
 }
 .trailer:hover{
     color: chocolate;

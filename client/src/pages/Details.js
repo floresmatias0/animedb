@@ -15,7 +15,7 @@ const Details = ({DETAILS,detailAnime}) => {
 
     return (
         <div className={styles.container}>
-            <h1>Hola soy un Detail</h1>
+            <h1>Details</h1>
             {DETAILS && DETAILS.details.length > 0 ? (
                 <Card anime={DETAILS.details} />
             ):(

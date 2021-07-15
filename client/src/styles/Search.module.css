@@ -6,3 +6,9 @@
     align-content: center;
     text-align: center;
 }
+.container h1 {
+    font-family: titleAnime;
+}
+.container p{
+    font-family: AnimeAce;
+}

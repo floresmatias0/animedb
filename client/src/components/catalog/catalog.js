@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from '../../styles/Catalog.module.css';
 import { Link } from 'react-router-dom';
+import movie from '../../assets/images/clapperboard.png';
+import noMovie from '../../assets/images/Noclapperboard.png';
 
 const Catalog = (props) => {
 
@@ -17,9 +19,16 @@ const Catalog = (props) => {
                             <img src={elem.image.tiny} alt='poster'/>
                         </Link>
                         {elem.idYoutube ? (
-                            <p className={styles.trailer} onClick={() => popUp(`https://www.youtube.com/watch?v=${elem.idYoutube}`)}>Trailer</p>
+                            <p className={styles.trailer} 
+                               onClick={() => popUp(`https://www.youtube.com/watch?v=${elem.idYoutube}`)}>
+                                Trailer
+                            <img src={movie} alt="movieIcon"/>
+                            </p>
                         ):(
-                            <p className={styles.trailer} onClick={() => alert("sorry no trailer")}>No Trailer</p>
+                            <p className={styles.notrailer} 
+                               onClick={() => alert("sorry no trailer")}>
+                            <img src={noMovie} alt="movieIcon"/>    
+                            </p>
                         )}
                     </div>                  
                 )  

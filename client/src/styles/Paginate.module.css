@@ -19,6 +19,8 @@
     list-style: none;
     margin: 0.5em;
     cursor: pointer;
+    font-family: textAnime2;
+    font-size: 1.5rem;
 }
 .cuantity li:hover{
     color:chocolate;
