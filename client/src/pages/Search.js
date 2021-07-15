@@ -16,11 +16,17 @@ const Search = ({RESULTS,resultAnime}) => {
 
     return (
         <div className={styles.container}>
-            <h1>Hola soy un Resultado</h1>
-            {RESULTS && RESULTS.search.length > 0 ? (
-                <Card anime={RESULTS.search}/>
+            <h1>Results finders</h1>
+            {RESULTS && RESULTS.loadingSearch ? (
+                <>
+                {RESULTS && RESULTS.search === "Sorry we cant finder your anime" ? (
+                    <p>Sorry we cant finder your anime</p>
+                ):(
+                    <Card anime={RESULTS.search}/>
+                )}
+                </>
             ):(
-                <p>loading...</p>
+                <p>Loading..</p>
             )}
         </div>
     )

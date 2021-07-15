@@ -246,7 +246,6 @@ export const getGenres = () => {
 
     await axios.get('http://localhost:3001/genres')
     .then(res => {
-        console.log(res.data)
       dispatch({
         type: GET_GENRES_SUCCESS,
         payload: res.data
@@ -270,6 +269,7 @@ export const getAnimeByName = (name) => {
 
     await axios.get(`http://localhost:3001/animes/search/${name}`)
     .then(res => {
+      console.log(res)
       dispatch({
         type: SEARCH_SUCCESS,
         payload: res.data

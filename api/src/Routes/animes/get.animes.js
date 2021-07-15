@@ -21,8 +21,11 @@ server.get('/search/:animeName', (req, res, next) => {
 
     getAnimeByName(animeName)
     .then(result => {
-        console.log(result)
-        res.status(202).json(result);
+        if(result.length === 0){
+            res.status(202).send("Sorry we cant finder your anime");
+        }else{
+            res.status(202).json(result);
+        }       
     }) 
     .catch(error => {
         console.log(error)

@@ -58,32 +58,32 @@ const Home = ({ANIME}) => {
                         <div className={styles.listColumns}>
                         <ul className={styles.listGenres}>
                             {ANIME.genres.map((point,i) => {
-                                return <Link className={styles.link} to={`/animes/${point.name}`}><li key={i} >{point.name}</li></Link>
+                                return <Link className={styles.link} to={`/animes/${point.name}`} key={i}><li>{point.name}</li></Link>
                             }).slice(0,10)}
                         </ul>
                         <ul className={styles.listGenres}>
                             {ANIME.genres.map((point,i) => {
-                                return <Link className={styles.link} to={`/animes/${point.name}`}><li key={i} >{point.name}</li></Link>
+                                return <Link className={styles.link} to={`/animes/${point.name}`} key={i}><li>{point.name}</li></Link>
                             }).slice(10,20)}
                         </ul>
                         <ul className={styles.listGenres}>
                             {ANIME.genres.map((point,i) => {
-                                return <Link className={styles.link} to={`/animes/${point.name}`}><li key={i} >{point.name}</li></Link>
+                                return <Link className={styles.link} to={`/animes/${point.name}`} key={i}><li>{point.name}</li></Link>
                             }).slice(20,30)}
                         </ul>
                         <ul className={styles.listGenres}>
                             {ANIME.genres.map((point,i) => {
-                                return <Link className={styles.link} to={`/animes/${point.name}`}><li key={i} >{point.name}</li></Link>
+                                return <Link className={styles.link} to={`/animes/${point.name}`} key={i}><li>{point.name}</li></Link>
                             }).slice(30,40)}
                         </ul>
                         <ul className={styles.listGenres}>
                             {ANIME.genres.map((point,i) => {
-                                return <Link className={styles.link} to={`/animes/${point.name}`}><li key={i} >{point.name}</li></Link>
+                                return <Link className={styles.link} to={`/animes/${point.name}`} key={i}><li>{point.name}</li></Link>
                             }).slice(40,50)}
                         </ul>
                         <ul className={styles.listGenres}>
                             {ANIME.genres.map((point,i) => {
-                                return <Link className={styles.link} to={`/animes/${point.name}`}><li key={i} >{point.name}</li></Link>
+                                return <Link className={styles.link} to={`/animes/${point.name}`} key={i}><li>{point.name}</li></Link>
                             }).slice(50,60)}
                         </ul>
                         </div>

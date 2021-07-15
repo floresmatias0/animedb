@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getAnimesByGenre } from '../redux/animesDuck/animesDuck';
 import Paginate from '../components/paginate/paginate';
 import Catalog from '../components/catalog/catalog';
+import styles from '../styles/ByGenre.module.css'
 
 const ByGenre = ({NEWANIMES,GENRE}) => {
 
@@ -24,8 +25,8 @@ const ByGenre = ({NEWANIMES,GENRE}) => {
     const pagination = (number) => setCurrentPage(number)
 
     return (
-        <div>
-            <h1 style={{textAlign:"center"}}>{nameGenre}</h1>
+        <div className={styles.container}>
+            <h1>{nameGenre}</h1>
             {GENRE && GENRE.loadingAnimesByGenre ? (
                 <>
                     <Paginate 
