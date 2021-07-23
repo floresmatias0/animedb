@@ -37,13 +37,13 @@ const Navbar = ({USERS,REMOVEUSER}) => {
         <div className={styles.container}>
 
             <div className={styles.title}>
-                <h1 onClick={() => history.push("/")}>youAnime {/*<img src={revenge} alt="titleIcon" width="30px"/>*/}</h1>
+                <Link to="/" className={styles.animeTitle}>youAnime</Link> 
             </div>
             
-            <form onSubmit={handleSubmit} clasuserRegitersName={styles.searchbar}>
-                
+            <form onSubmit={handleSubmit} className={styles.searchbar}>
+                <div>
                     <label>search by name</label>
-                
+                </div>
                 <div>
                     <input className={styles.barSearch} type='text' onChange={handleChange} name='name' value={search.name}/>
                     <input className={styles.button} type='submit' value="send"/>
@@ -52,12 +52,14 @@ const Navbar = ({USERS,REMOVEUSER}) => {
 
             <div className={styles.user}>
                 {USERS && USERS.user.length > 0 ? (
-                    <h3 onClick={() => logOut()}>Logout</h3>
+                    <div className={styles.buttonsLogout}>
+                        <h3 onClick={() => logOut()}>Logout</h3>
+                    </div>
                 ):(
-                    <>
+                    <div className={styles.buttonsLogin}>
                         <Link to="/login">ingresar</Link>
                         <Link to="/register">registrarse</Link>
-                    </>
+                    </div>
                 )}
                 <img src={user} alt="userIcon"/>
             </div>

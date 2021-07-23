@@ -21,13 +21,16 @@
     display: flex;
     align-self: center;
 }
-.title h1{
+.animeTitle{
     cursor: pointer;
     font-family: Anime;
+    font-size: 2rem;
     margin: 0;
     margin-left: 0.2em;
+    text-decoration: none;
+    color: brown;
 }
-.title h1:hover{
+.animeTitle:hover,.buttonsLogin a:hover,.buttonsLogout h3:hover{
     position: relative;
     bottom: 0.1em;
 }
@@ -38,12 +41,12 @@
 }
 .searchbar label{
     font-family: titleAnime;
-    margin-left: 5em;
 }
 .searchbar div{
     display: flex;
     width: 100%;
     flex-direction: column;
+    justify-content: center;
 }
 .barSearch{
     border: none;
@@ -75,6 +78,20 @@
 }
 .user {
     justify-content:flex-end;
+}
+.buttonsLogin,.buttonsLogout{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+}
+.buttonsLogin a, .buttonsLogout h3{
+    margin: 0.4em;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: Anime;
+    font-size: 0.7rem;
+    color: brown;
 }
 .user img{
     padding-right: 0.2em;

@@ -36,6 +36,7 @@ const Login = () => {
               if(user.data){
                   localStorage.setItem("user",JSON.stringify(user.data))
                   history.push("/")
+                  window.location.reload()
               }else{
                     console.log("error")
               }
