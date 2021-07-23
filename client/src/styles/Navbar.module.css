@@ -34,24 +34,20 @@
 .searchbar{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-self: center;
     text-align: center;
 }
 .searchbar label{
     font-family: titleAnime;
+    margin-left: 5em;
 }
 .searchbar div{
     display: flex;
-    width: 80%;
-    margin: 0.2em;
-    justify-content: center;
+    width: 100%;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
 }
 .barSearch{
     border: none;
+    width: 100%;
     border-radius: 0.4em;
     outline: none;
     text-align: center;
@@ -68,10 +64,10 @@
     outline: none;
     border-radius: 0.4em;
     width: 50%;
-    margin-top: 0.2em;
-    margin-bottom: 0.2em;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
 }
 .button:hover{
     filter: brightness(0.8);

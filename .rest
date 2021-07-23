@@ -28,6 +28,16 @@ Content-Type: application/json
     "password_virtual": "password"
 }
 
+### POST LOGIN
+
+POST http://localhost:3001/users/login
+Content-Type: application/json
+
+{
+    "email": "email@gmail.com",
+    "password": "password"
+}
+
 ### POST MOVIE IN DB
 
 POST http://localhost:3001/movies/create/form/movie

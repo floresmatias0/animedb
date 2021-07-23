@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
+const bcrypt = require('bcrypt')
 const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,DB_NAME
@@ -34,8 +35,16 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { User,Anime,Genre } = sequelize.models;
 
 // Aca vendrian las relaciones:
+User.belongsToMany(Anime, { through: 'Users_Animes', as: 'animes' });
+Anime.belongsToMany(User, { through: 'Users_Animes', as: 'users' });
 
-
+//Antes de crear un usuario se hashea la contraseña con el password virual
+User.beforeCreate(async (user) => {
+  if (user.password_virtual) {
+    const encryptPassword = await bcrypt.hash(user.password_virtual, 10);
+    user.password = encryptPassword;
+  }
+});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { User } = require('./db.js');

@@ -9,6 +9,7 @@ const cors = require ('./Middleware/cors.middleware');
 const passport = require('./Middleware/passport.middleware')
 const routes = require('./Routes/index.js');
 
+const {ACCESS_TOKEN_SECRET} = process.env;
 const server = express();
 
 server.name = 'API';
@@ -26,7 +27,7 @@ server.use((req, res, next) => {
 server.use(cookieParser());
 server.use(session({ 
     name: 'sid',
-    secret:'secret', // Debería estar en un archivo de environment
+    secret: ACCESS_TOKEN_SECRET, // Debería estar en un archivo de environment
     resave:false,
     saveUninitialized:false,
     cookie:{

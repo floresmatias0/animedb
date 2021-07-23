@@ -1,4 +1,5 @@
 import axios from 'axios';
+import bcrypt from 'bcryptjs';
 
 //constants
 let initialState = {
@@ -19,12 +20,27 @@ let initialState = {
     errorSearch:"",
     details:[],
     loadingDetails:true,
-    errorDetails:""
+    errorDetails:"",
+    user:[],
+    loadingUser:true,
+    errorUser:"",
+    favorites:[],
+    loadingFavorites:true,
+    errorFavorites:""
 }
+
+let GET_USER_REQUEST = "GET_USER_REQUEST";
+let GET_USER_SUCCESS = "GET_USER_SUCCESS";
+let GET_USER_FAILURE = "GET_USER_FAILURE";
+let REMOVE_USER_SUCCESS = "REMOVE_USER_SUCCESS"
 
 let GET_ANIMES_REQUEST = "GET_ANIMES_REQUEST";
 let GET_ANIMES_SUCCESS = "GET_ANIMES_SUCCESS";
 let GET_ANIMES_FAILURE = "GET_ANIMES_FAILURE";
+
+let GET_FAVORITES_REQUEST = "GET_FAVORITES_REQUEST";
+let GET_FAVORITES_SUCCESS = "GET_FAVORITES_SUCCESS";
+let GET_FAVORITES_FAILURE = "GET_FAVORITES_FAILURE";
 
 let GET_POPULARITIES_REQUEST = "GET_POPULARITIES_REQUEST";
 let GET_POPULARITIES_SUCCESS = "GET_POPULARITIES_SUCCESS";
@@ -49,6 +65,45 @@ let DETAILS_FAILURE = "DETAILS_FAILURE";
 //reducer
 const reducer = (state = initialState, action) => {
   switch(action.type){
+    case GET_FAVORITES_REQUEST:
+      return {
+        ...state,
+        loadingFavorites:false
+      }
+    case GET_FAVORITES_SUCCESS:
+      return {
+        ...state,
+        favorites: state.favorites.concat(action.payload),
+        loadingFavorites: true
+      }
+    case GET_FAVORITES_FAILURE:
+      return {
+        ...state,
+        errorFavorites: action.payload,
+        loadingFavorites:true
+      }
+    case GET_USER_REQUEST:
+      return {
+        ...state,
+        loadingUser:false
+      }
+    case GET_USER_SUCCESS:
+      return {
+        ...state,
+        user: [action.payload],
+        loadingUser: true
+      }
+    case GET_USER_FAILURE:
+      return {
+        ...state,
+        errorUser: action.payload,
+        loadingUser:true
+      }
+    case REMOVE_USER_SUCCESS:
+      return {
+        ...state,
+        user: [],
+      }
     case GET_ANIMES_REQUEST:
       return {
         ...state,
@@ -158,6 +213,52 @@ const reducer = (state = initialState, action) => {
 }
 
 //actionsCreator
+export const getUser = (user) => {
+
+  return async (dispatch,getState) => {
+    dispatch({
+      type:GET_USER_REQUEST
+    })
+    await axios.get('http://localhost:3001/users')
+    .then(async(res) => {
+      let users = res.data
+
+      for(let i = 0; i < users.length; i++ ){
+        
+        if(users[i].email === user.email){
+          const match = await bcrypt.compare(users[i].password_virtual, user.password);
+          console.log(match)
+          if(match) {
+              //login
+              dispatch({
+                type: GET_USER_SUCCESS,
+                payload: user
+              })
+          }
+        }
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: GET_USER_FAILURE,
+        payload: err.message
+      })
+    })
+  }
+
+}
+
+export const removeUser = () => {
+
+  return async (dispatch,getState) => {
+    dispatch({
+      type: REMOVE_USER_SUCCESS
+    })
+  }
+
+}
+
 export const getAnimes = (num) => {
     return async (dispatch,getState) => {
       dispatch({
@@ -190,6 +291,39 @@ export const getAnimes = (num) => {
       })
     }
 
+}
+
+export const likeAnime = (animeId,userId) => {
+  return async (dispatch,getState) => {
+    dispatch({
+      type:GET_FAVORITES_REQUEST
+    })
+    let options = {
+      method : 'POST',
+      url: 'http://localhost:3001/animes/favorites',
+      header:{
+          ContentType: 'application/json',   
+      },
+      data:{
+          idAnime: animeId,
+          idUser: userId
+          }
+    }
+    await axios.request(options)
+    .then(res => {
+      dispatch({
+        type: GET_FAVORITES_SUCCESS,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: GET_FAVORITES_FAILURE,
+        payload: err.message
+      })
+    })
+  }
 }
 
 export const getAnimesPopularities = () => {

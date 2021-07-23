@@ -1,8 +1,13 @@
   
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { User } = require('../db');
+const passportJWT = require('passport-jwt');
+const JWTStrategy =  passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt
+const { User } = require("../db");
+const bcrypt = require('bcrypt');
 
+const {ACCESS_TOKEN_SECRET} = process.env;
 
 passport.use(new LocalStrategy({
   usernameField: 'email',
@@ -15,15 +20,33 @@ passport.use(new LocalStrategy({
       } 
     })
     .then((user) => {
-      if (!user) {
-          return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.password === password) {
-          return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+      if(user){
+        const passwordIsRight = bcrypt.compareSync(password, user.password);
+
+        if(passwordIsRight){
+            return done(null, user);
+        }else {
+            return done(null, false, { msg : 'Password invalid'});
+        }
+
+    }else {
+        return done(null, false, { msg : 'Email invalid'});
+    }
   })
-  .catch(err => done(err));
+  .catch(err => {
+    console.log(err)
+    done(err)
+  });
+  }
+));
+
+passport.use('jwt',new JWTStrategy(
+  { 
+    secretOrKey: ACCESS_TOKEN_SECRET,
+    jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
+  },
+  function(payload, done){
+      done(null, payload);
   }
 ));
 

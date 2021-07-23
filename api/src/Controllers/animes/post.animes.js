@@ -1,4 +1,4 @@
-const { Anime } = require('../../db')
+const { Anime,User } = require('../../db')
 const axios = require('axios')
 
 module.exports = {
@@ -44,5 +44,14 @@ module.exports = {
             clearInterval(createAnime)
             }
         },500)
-    }
+    },
+    addAnimeToUser: async (idAnime, idUser) => {
+        return await Anime.findByPk(idAnime).then( async (oneAnime) => {
+          return await User.findByPk(idUser)
+            .then((oneUser) => {
+              oneAnime.addUser(oneUser);
+              return oneAnime;
+            });
+         });
+     }
 }
