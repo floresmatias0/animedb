@@ -7,6 +7,7 @@ import Layout from './components/layout/layout';
 import ByGenre from './pages/ByGenre';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import styles from "./styles/App.module.css"
 
 const LayoutHome = () => {
   return (
@@ -26,12 +27,12 @@ const LayoutRegister = () => {
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Route exact path="/" component={LayoutHome}/>
       <Route exact path="/results/:animeName" component={Search}/>
       <Route exact path="/details/:animeId" component={Details}/>
       <Route exact path="/animes/:nameGenre" component={ByGenre}/>
-      <Route exact path="/register" component={LayoutRegister}/>
+      <Route exact path="/register" component={Register}/>
       <Route exact path="/login" component={Login}/>
     </div>
   );

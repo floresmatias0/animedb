@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import styles from '../styles/Login.module.css';
 
 const Login = () => {
 
@@ -45,9 +46,9 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <h1>Hola soy un register</h1>
-            <form onSubmit={handleSubmit}>
+        <div className={styles.container}>
+            <h1>Sign In</h1>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <label>Email</label>
                 <input type='email' 
                        onChange={handleChange}
@@ -62,7 +63,7 @@ const Login = () => {
                        value={user.password}
                 />
 
-                <input type='submit' value="register"/>
+                <button type='submit' className={styles.button}> Login </button>
             </form>
         </div>
     )      
