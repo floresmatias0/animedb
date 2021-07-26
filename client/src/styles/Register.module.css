@@ -6,7 +6,7 @@
     justify-content: center;
 }
 .form{
-    width: 50%;
+    width: 30em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,4 +57,9 @@
     font-family: TextAnime;
     margin: 0.1em;
     font-size: 1.1rem;
+}
+@media screen and (max-width:580px){
+    .form{
+        width: 90%;
+    }
 }

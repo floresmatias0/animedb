@@ -2,6 +2,7 @@ import React,{ useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import styles from '../styles/Register.module.css';
+import Swal from 'sweetalert2'
 
 const Register = () => {
 
@@ -62,8 +63,14 @@ const Register = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        
-        let options = {
+        if(!user.name || !user.lastname || !user.password_virtual || !user.password || !user.email){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'complete the form'
+            })
+        }else{
+            let options = {
             method: 'POST',
             url: 'http://localhost:3001/users/new',
             header:{
@@ -85,7 +92,9 @@ const Register = () => {
                 history.push("/login")  
               } 
             })
-          .catch(err => console.log(err))
+          .catch(err => console.log(err)) 
+        }
+
 
     }
 
@@ -124,7 +133,7 @@ const Register = () => {
                        name="email"
                        value={user.email}
                 />
-                {errors.email && errors.email === 'email is required' || errors.email === 'email is invalid'
+                {errors.email && (errors.email === 'email is required' || errors.email === 'email is invalid')
                 ?(
                     <p className={`${styles.error} animate__animated animate__shakeX`}>{errors.email}</p> 
                 ):(

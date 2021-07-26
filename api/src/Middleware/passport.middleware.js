@@ -25,16 +25,17 @@ passport.use(new LocalStrategy({
 
         if(passwordIsRight){
             return done(null, user);
-        }else {
-            return done(null, false, { msg : 'Password invalid'});
+        }else{
+          let errPassword = "Password Invalid"
+            return done(null,false,errPassword);
         }
 
     }else {
-        return done(null, false, { msg : 'Email invalid'});
+      let errEmail = "Email Invalid"
+        return done(null, false, errEmail);
     }
   })
   .catch(err => {
-    console.log(err)
     done(err)
   });
   }

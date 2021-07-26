@@ -18,7 +18,8 @@ const Home = ({ANIME}) => {
                         <h1 className={styles.titleAnime}>The most popular</h1>
                     </div>         
                     <div className={styles.contentCards}>    
-                    {ANIME.popularities.map((point,i) => {
+                    {// eslint-disable-next-line
+                    ANIME.popularities.map((point,i) => {
                         if(point.image && point.image.small){
                             return (
                                 <div className={styles.card} key={i}>

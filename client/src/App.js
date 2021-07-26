@@ -17,13 +17,13 @@ const LayoutHome = () => {
   )
 }
 
-const LayoutRegister = () => {
-  return (
-    <Layout>
-      <Register/>
-    </Layout>
-  )
-}
+// const LayoutRegister = () => {
+//   return (
+//     <Layout>
+//       <Register/>
+//     </Layout>
+//   )
+// }
 
 function App() {
   return (

@@ -12,7 +12,8 @@ const Catalog = (props) => {
 
     return (
         <div className={styles.container}>
-        {props.anime.map((elem,i)=>{
+        {props && props.anime && props.anime.length > 0 ? (
+            props.anime.map((elem,i)=>{
                 return (
                     <div className={styles.card} key={i}> 
                         <Link to={`/details/${elem.id}`}>
@@ -32,7 +33,10 @@ const Catalog = (props) => {
                         )}
                     </div>                  
                 )  
-        })   
+        }) 
+        ):(
+            <p>loading</p>
+        )  
         }       
         </div>
     )

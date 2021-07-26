@@ -12,6 +12,7 @@ const ByGenre = ({NEWANIMES,GENRE}) => {
 
     useEffect(() => {
         NEWANIMES(nameGenre)
+        // eslint-disable-next-line
     },[])
 
     //PAGINATION

@@ -227,7 +227,7 @@ export const getUser = (user) => {
         
         if(users[i].email === user.email){
           const match = await bcrypt.compare(users[i].password_virtual, user.password);
-          console.log(match)
+          
           if(match) {
               //login
               dispatch({
@@ -429,6 +429,7 @@ export const getAnimesByGenre = (nameGenre) => {
     .then(res => {
       let newAnimes =[]
         for(let i = 0; i < res.data.length; i++){
+          // eslint-disable-next-line
           res.data[i].genres.map(point => {
             if(point === nameGenre){
               newAnimes.push(res.data[i])
