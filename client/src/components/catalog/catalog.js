@@ -10,14 +10,16 @@ const Catalog = (props) => {
         window.open(URL, 'Nombre de la ventana', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=640,height=400,left = 50,top = 50');
     }
 
+    console.log(props)
+
     return (
         <div className={styles.container}>
-        {props && props.anime && props.anime.length > 0 ? (
-            props.anime.map((elem,i)=>{
+        {props.anime.map((elem,i)=>{
                 return (
                     <div className={styles.card} key={i}> 
+                        <p className={styles.title}>{elem.name.length > 20 ? elem.name.slice(0,20) + "..." : elem.name}</p>
                         <Link to={`/details/${elem.id}`}>
-                            <img src={elem.image.tiny} alt='poster'/>
+                            <img src={elem.image ? elem.image.small : noMovie} alt='poster' width="200px"/>
                         </Link>
                         {elem.idYoutube ? (
                             <p className={styles.trailer} 
@@ -33,11 +35,7 @@ const Catalog = (props) => {
                         )}
                     </div>                  
                 )  
-        }) 
-        ):(
-            <p>loading</p>
-        )  
-        }       
+        })}       
         </div>
     )
 }

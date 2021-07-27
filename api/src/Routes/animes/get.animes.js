@@ -81,7 +81,6 @@ server.get('/popularity', async(req, res, next) => {
         order:[ ['popularity','ASC'] ]
     })
     .then(result => {
-        console.log(result)
         res.status(202).json(result);
     }) 
     .catch(error => {

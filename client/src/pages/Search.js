@@ -2,7 +2,7 @@ import React,{ useEffect } from 'react';
 import { getAnimeByName } from '../redux/animesDuck/animesDuck';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
-import Card from '../components/card/Card';
+import CardResult from '../components/cardSearch/cardSearch';
 import styles from '../styles/Search.module.css'
 
 const Search = ({RESULTS,resultAnime}) => {
@@ -22,7 +22,7 @@ const Search = ({RESULTS,resultAnime}) => {
                 {RESULTS && RESULTS.search === "Sorry we cant finder your anime" ? (
                     <p>Sorry we cant finder your anime</p>
                 ):(
-                    <Card anime={RESULTS.search}/>
+                    <CardResult anime={RESULTS.search}/>
                 )}
                 </>
             ):(

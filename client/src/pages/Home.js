@@ -57,7 +57,7 @@ const Home = ({ANIME}) => {
                 <p>loading...</p>
             )}
 
-            {ANIME && ANIME.loadingGenres ? (
+            {ANIME && ANIME.loadingGenres && ANIME.loadingAnimesByGenre ? (
                 <div className={styles.contentGenres}>
                     <h1 className={styles.titleAnime}>or filter by genre</h1>
                     {ANIME && ANIME.genres.length > 0 ? (
