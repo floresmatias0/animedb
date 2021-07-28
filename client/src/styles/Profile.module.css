@@ -1,0 +1,84 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+.infoProfile, .infoFavs{
+    width: 100%;
+}
+.cardProfile{
+    width: 30em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.contentImage{
+    width: 15em;
+    height: 15em;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.contentImage img{
+    width: 100%;
+    height: 100%;
+}
+.contentInfo{
+    text-align: center;
+}
+.contentFavs{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.card{
+    width: 200px;
+    font-family: textAnime2;
+    font-size: 1.5rem;
+    margin: 0.5em;
+    cursor: pointer;
+}
+.card img{
+    border-radius: 0.5em;
+}
+.card img:hover{
+    filter: brightness(0.6);
+}
+.trailer{
+    cursor:grabbing;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: textAnime2;
+    font-size: 1.5rem;
+    margin: 0.5em;
+}
+.notrailer{
+    cursor:grabbing;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: textAnime2;
+    font-size: 1.5rem;
+    margin: 0.5em;
+}
+.trailer img{
+    margin: 0;
+    margin-left: 0.5em;
+}
+.title{
+    margin: 0.2em;
+}
+.trailer:hover{
+    color: chocolate;
+}

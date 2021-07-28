@@ -22,7 +22,7 @@ server.get('/:idUser', (req, res, next) => {
         },
         include: [{
             model: Anime, as: 'animes',
-            attributes: ["name","description","origin","finish","status","image","coverImage", "totalEpisodes", "idYoutube", "genres", "popularity"]
+            attributes: ["id","name","description","origin","finish","status","image","coverImage", "totalEpisodes", "idYoutube", "genres", "popularity"]
         }]
     })
     .then(users => {

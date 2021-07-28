@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory} from 'react-router';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/Navbar.module.css';
-import user from '../../assets/images/user.png';
+import noImage from '../../assets/images/user.png';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { removeUser } from '../../redux/animesDuck/animesDuck';
@@ -65,14 +65,20 @@ const Navbar = ({USERS,REMOVEUSER}) => {
                 {USERS && USERS.user.length > 0 ? (
                     <div className={styles.buttonsLogout}>
                         <h3 onClick={() => logOut()}>Logout</h3>
+                        <img 
+                            src={USERS.user[0].image} 
+                            alt="imageProfile" 
+                            onClick={() => history.push("/profile")}
+                        /> 
                     </div>
                 ):(
                     <div className={styles.buttonsLogin}>
                         <Link to="/login">ingresar</Link>
                         <Link to="/register">registrarse</Link>
+                        <img src={noImage} alt="userIcon" onClick={() => history.push("/profile")}/> 
                     </div>
                 )}
-                <img src={user} alt="userIcon" onClick={() => history.push("/profile")}/>
+                
             </div>
 
         </div>

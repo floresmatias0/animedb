@@ -85,11 +85,20 @@
     justify-content: center;
     align-self: center;
 }
+.buttonsLogout img{
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
 .buttonsLogin a, .buttonsLogout h3{
     margin: 0.4em;
     text-decoration: none;
     cursor: pointer;
     font-family: Anime;
+    align-self: center;
     font-size: 0.7rem;
     color: brown;
 }
