@@ -14,7 +14,7 @@ const CardSearch = (props) => {
                         <div className={styles.banner}>
                             {elem.coverImage === null ? (
                                 <div className={styles.image}>
-                                    <img src={caratula} alt='back'/>
+                                    <img src={caratula} alt='back' height="100%"/>
                                 </div>
                             ) : (
                                 <div className={styles.image}>
@@ -23,8 +23,8 @@ const CardSearch = (props) => {
                             )}
                         </div>
                         <div className={styles.contentCard}> 
-                            <div>
-                                <img src={elem.image.small} alt='poster'/>   
+                            <div className={styles.imageAnime}>
+                                <img src={elem.image.small} alt='poster' width="180px"/>   
                             </div>
                             <div>
                                 <h2>{elem.name}</h2>

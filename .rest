@@ -25,7 +25,8 @@ Content-Type: application/json
     "name": "matiflo",
     "lastname": "flores",
     "password": "password",
-    "password_virtual": "password"
+    "password_virtual": "password",
+    "image": "ksjdklajdjasldjaskjdlasjkskskksk" 
 }
 
 ### POST LOGIN

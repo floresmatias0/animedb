@@ -17,6 +17,25 @@ const Register = () => {
         password_virtual:""
     })
 
+    const [photo, setPhoto] = useState()
+    const [newPhoto, setNewPhoto] = useState()
+    const [loadingPhoto, setLoadingPhoto] = useState(false)
+    
+
+    const handleUpload = async () => {
+        setLoadingPhoto(true)
+        const formData = new FormData()
+        formData.append("file",photo[0]);
+        formData.append("upload_preset","itdlixpm");
+        return await axios.post('https://api.cloudinary.com/v1_1/djnhaprmj/upload',formData)
+        .then(image => {
+            setNewPhoto(image.data.url)
+            setLoadingPhoto(false)
+        }).catch(err=> {
+            console.log(err.message)
+        })
+    }
+
 
     const handleChange = (e) => {
         setUser({
@@ -81,7 +100,8 @@ const Register = () => {
                 lastname: user.lastname,
                 email: user.email,
                 password: user.password,
-                password_virtual: user.password_virtual
+                password_virtual: user.password_virtual,
+                image: newPhoto
             }
         }
           await axios.request(options)
@@ -158,6 +178,19 @@ const Register = () => {
                 ):(
                     <></>
                 )}
+
+                <div>
+                    <h3>upload photo</h3>
+                    <input type="file" className={styles.inputFile} onChange={(e)=>setPhoto(e.target.files)}/>
+                    {loadingPhoto ?(
+                        // <img className={styles.loadingPhotoImg} src={pikachu} alt="loading..."/>
+                        <p>loading...</p>
+                    ):(
+                        <button 
+                        className={styles.button} 
+                        onClick={handleUpload}>upload photo</button>
+                    )}  
+                </div>  
                 <button type='submit' className={styles.button}> Register </button>
             </form>
         </div>

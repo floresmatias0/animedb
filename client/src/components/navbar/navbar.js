@@ -5,7 +5,9 @@ import styles from '../../styles/Navbar.module.css';
 import user from '../../assets/images/user.png';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { removeUser } from '../../redux/animesDuck/animesDuck'
+import { removeUser } from '../../redux/animesDuck/animesDuck';
+import Swal from 'sweetalert2';
+
 
 const Navbar = ({USERS,REMOVEUSER}) => {
 
@@ -20,8 +22,17 @@ const Navbar = ({USERS,REMOVEUSER}) => {
         })
     }
 
-    const handleSubmit = () => {
-        history.push(`/results/${search.name}`)
+    const handleSubmit = (e) => {
+        if(!search.name){
+            e.preventDefault()
+            Swal.fire({
+                icon: "error",
+                text: "please insert name to search"
+            })
+        }else{
+           history.push(`/results/${search.name}`) 
+        }
+        
     }
 
     const logOut = () => {
@@ -61,7 +72,7 @@ const Navbar = ({USERS,REMOVEUSER}) => {
                         <Link to="/register">registrarse</Link>
                     </div>
                 )}
-                <img src={user} alt="userIcon"/>
+                <img src={user} alt="userIcon" onClick={() => history.push("/profile")}/>
             </div>
 
         </div>

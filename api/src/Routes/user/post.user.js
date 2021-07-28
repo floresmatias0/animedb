@@ -5,11 +5,11 @@ const passport = require('../../Middleware/passport.middleware')
 
 
 server.post('/new', (req, res, next) => { 
-    let { name, lastname, password_virtual, password, email } = req.body;
+    let { name, lastname, password_virtual, password, email, image } = req.body;
     if(!name || !lastname || !password_virtual || !password || !email){
       res.status(402).send("please complete the form")
     }else{
-      createUser(name, lastname, password_virtual, password, email) 
+      createUser(name, lastname, password_virtual, password, email, image) 
       .then(() => res.status(202).json("user create"))
       .catch(err => res.status(404).send(err.message)) 
     }

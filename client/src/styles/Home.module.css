@@ -31,6 +31,19 @@
     overflow-y: hidden;
     white-space: nowrap;
 }
+.contentCards::-webkit-scrollbar{
+    -webkit-appearance: none;
+    color: black;
+    background-color: rgb(175, 50, 50, 0.6);
+    border-radius: 0.5em;
+    height: 0.6em;
+}
+.contentCards::-webkit-scrollbar-thumb{
+    background-color: #F38C8C;
+    border-radius: 0.5em;
+    border: 2px solid rgb(58, 3, 3);
+    box-sizing: border-box;
+}
 .contentGenres{
     width: 100%;
     display: flex;

@@ -2,7 +2,7 @@ const { User } = require('../../db');
 
 module.exports = {
 
-    createUser: async(name, lastname, password_virtual, password, email) => {
+    createUser: async(name, lastname, password_virtual, password, email, image) => {
 
         return await User.findOrCreate({
             where:{
@@ -12,7 +12,8 @@ module.exports = {
                 name: name,
                 lastname: lastname,
                 password_virtual: password_virtual,
-                password: password
+                password: password,
+                image: image
             }
         })
     }
