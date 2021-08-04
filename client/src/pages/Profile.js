@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {connect} from 'react-redux';
 import noImage from '../assets/images/user.png';
 import styles from '../styles/Profile.module.css';
 import noMovie from '../assets/images/Noclapperboard.png';
 import movie from '../assets/images/clapperboard.png';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Profile = ({USER}) => {
+
+    const { idUser } = useParams();
 
     const popUp = (URL) => {
         window.open(URL, 'Nombre de la ventana', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=640,height=400,left = 50,top = 50');
     }
 
-    console.log(USER.user.animes)
+    const [edit, setEdit] = useState(false);
+
+    const [photo, setPhoto] = useState()
+    const [newPhoto, setNewPhoto] = useState()
+    const [loadingPhoto, setLoadingPhoto] = useState(false)
+    
+
+    const handleUpload = async () => {
+        setLoadingPhoto(true)
+        const formData = new FormData()
+        formData.append("file",photo[0]);
+        formData.append("upload_preset","itdlixpm");
+        return await axios.post('https://api.cloudinary.com/v1_1/djnhaprmj/upload',formData)
+        .then(image => {
+            setNewPhoto(image.data.url)
+            setLoadingPhoto(false)
+        }).catch(err=> {
+            console.log(err.message)
+        })
+    }
 
     return (
         <>
@@ -26,6 +48,19 @@ const Profile = ({USER}) => {
                                 <div className={styles.contentImage}>
                                     <img src={point.image ? point.image : noImage} 
                                         alt="imageProfile"/>
+                                    <p onClick={() => setEdit(true ? true : false)}>editar</p>
+                                    <div className={edit ? styles.edit : styles.editHidden}>
+                                    <h3>upload photo</h3>
+                                        <input type="file" className={styles.inputFile} onChange={(e)=>setPhoto(e.target.files)}/>
+                                        {loadingPhoto ?(
+                                            // <img className={styles.loadingPhotoImg} src={pikachu} alt="loading..."/>
+                                            <p>loading...</p>
+                                        ):(
+                                            <button 
+                                            className={styles.button} 
+                                            onClick={handleUpload}>upload photo</button>
+                                        )}
+                                    </div>
                                 </div>
                                 <div className={styles.contentInfo}>
                                     <p>{point.email}</p>

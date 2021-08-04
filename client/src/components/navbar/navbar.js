@@ -7,6 +7,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { removeUser } from '../../redux/animesDuck/animesDuck';
 import Swal from 'sweetalert2';
+import bcrypt from 'bcryptjs';
 
 
 const Navbar = ({USERS,REMOVEUSER}) => {
@@ -44,6 +45,88 @@ const Navbar = ({USERS,REMOVEUSER}) => {
         window.location.reload()
     }
 
+    const loginWithSweetAlert = () => {
+        Swal.fire({
+            title: 'Login',
+            html: `<input type="text" id="login" class="swal2-input" placeholder="Email">
+            <input type="password" id="password" class="swal2-input" placeholder="Password">`,
+            confirmButtonText: 'Sign in',
+            focusConfirm: false,
+            preConfirm: async() => {
+              const login = Swal.getPopup().querySelector('#login').value
+              const password = Swal.getPopup().querySelector('#password').value
+                if (!login || !password) {
+                    Swal.showValidationMessage(`Please enter email and password`)
+                }
+                return { login: login, password: password }
+            }
+          }).then(async(result) => {
+              if(result.isConfirmed){                 
+                await axios.get('http://localhost:3001/users')
+                .then(async(res) => {
+                    console.log(res.data)
+                    let users = res.data
+                    for(let i = 0; i < users.length; i++ ){
+                            if(users[i].email === result.value.login){
+                            const match = await bcrypt.compare(result.value.password,users[i].password);
+                            if(match) {
+                                let options = {
+                                    method: 'POST',
+                                    url: 'http://localhost:3001/users/login',
+                                    header:{
+                                        ContentType: 'application/json',   
+                                    },
+                                    data:{
+                                        email: result.value.login,
+                                        password: result.value.password
+                                        }
+                                }
+                                await axios.request(options)
+                                .then(user => {
+                                    if(user.data){
+                                        localStorage.setItem("user",JSON.stringify(user.data));
+                                    }else{
+                                        console.log("error")
+                                    }
+                                    })
+                                .catch(err => console.log(err))
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Great!.',
+                                    text: 'login successfully'  ,
+                                    confirmButtonText: 'Cool',
+                                    focusConfirm: false,
+                                }).then((result) => {
+                                    console.log(result)
+                                    if(result.isConfirmed || result.isDismissed){
+                                        window.location.reload();
+                                    }
+                                })
+
+                            }else{
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Incorrect password try again'  
+                                  })
+                            }
+
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Email not exist'  
+                            })
+                    }
+                    }
+                })
+                .catch(err => console.log(err))
+
+              }
+        })
+    }
+
     return(
         <div className={styles.container}>
 
@@ -73,9 +156,10 @@ const Navbar = ({USERS,REMOVEUSER}) => {
                     </div>
                 ):(
                     <div className={styles.buttonsLogin}>
-                        <Link to="/login">ingresar</Link>
+                        <p onClick={()=> loginWithSweetAlert()}> ingresar</p>
+                        {/* <Link to="/login">ingresar</Link> */}
                         <Link to="/register">registrarse</Link>
-                        <img src={noImage} alt="userIcon" onClick={() => history.push("/profile")}/> 
+                        <img src={noImage} alt="userIcon" onClick={() => history.push(`/profile/${JSON.parse(localStorage.getItem('user')).id}`)}/> 
                     </div>
                 )}
                 
